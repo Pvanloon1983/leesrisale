@@ -1,0 +1,267 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #fbf0cb;
+}
+
+.navbar {
+  width: 100%;
+  background-color: #fff;
+  height: 60px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #000;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.navbar
+.logo img {
+  width: 100%;
+  max-width: 150px;
+}
+
+.navbar
+.logo a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  height: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 10px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.logo a {
+  color: #000;
+  text-decoration: none;
+}
+
+.main-title {
+  text-align: center;
+  margin: 0;
+  margin-top: 30px;
+  line-height: 1.3em;
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
+.text-under-main-title {
+  text-align: center;
+  margin: 0;
+}
+
+.books-container {
+  display: grid;
+  justify-content: center;
+  column-gap: 20px;
+  row-gap: 20px;
+  margin-top: 30px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.book-item {
+  height: 375px;
+  background-color: #b1091f;
+  padding: 30px 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.book-item p {
+  margin: 0;
+  text-align: center;
+  color: #fff;
+}
+
+.book-item
+.book-title {
+  font-size: 19px;
+}
+
+.book-item
+.book-title a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.lees-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.lees-button-container 
+.lees-button {
+  position: relative;
+  top: 40px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  font-size: 16px;
+  padding: 5px 13px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.verschijnt-binnenkort {
+  position: relative;
+  top: 40px;
+  font-style: italic;
+}
+
+*:focus {
+  outline: none;
+}
+
+button:focus,
+a:focus {
+  outline: none;
+}
+
+* {
+  touch-action: manipulation;
+}
+
+button, a {
+  touch-action: manipulation;
+}
+
+*{
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Safari, iOS Safari */
+  -moz-tap-highlight-color: rgba(0, 0, 0, 0); /* Firefox */
+  -ms-tap-highlight-color: rgba(0, 0, 0, 0); /* Internet Explorer */
+  tap-highlight-color: rgba(0, 0, 0, 0); /* Standard */
+}
+
+button, a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Safari, iOS Safari */
+  -moz-tap-highlight-color: rgba(0, 0, 0, 0); /* Firefox */
+  -ms-tap-highlight-color: rgba(0, 0, 0, 0); /* Internet Explorer */
+  tap-highlight-color: rgba(0, 0, 0, 0); /* Standard */
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+/* Register page */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #000000;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  background-color: #fff;
+  color: #333;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #4CAF50;
+  box-shadow: 0px 0px 6px rgba(76, 175, 80, 0.3);
+}
+
+input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #b1091f;
+  color: white;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #b1091f;
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 768px) {
+  .books-container {
+    display: grid;
+    justify-content: center;
+    column-gap: 10px;
+    row-gap: 10px;
+    margin-top: 30px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .book-item {
+    height: 275px;
+    padding: 30px 11px;
+  }
+
+  .verschijnt-binnenkort {
+    top: 32px;
+    max-width: 100px;
+  }
+
+  .book-item
+  .book-title {
+    font-size: 16px;
+  }
+
+}
