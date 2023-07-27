@@ -2,6 +2,7 @@
  session_start();
  include_once('config/db.php');
  $booktitle = "Het Traktaat over de Natuur";
+ $bookUrlPHP = "/het-traktaat-over-de-natuur";
  include('includes/header-book-page.php'); 
 ?>
 
@@ -34,16 +35,84 @@
     </ul>
   </div>
 
-  <div class="sidebar-right">
-    <span class="inhoudsopgave-toggle-right">
-      <span class="sluiten-right"><i class="fa-solid fa-xmark"></i></span>
-    </span>
-    <p class="title-sidebar-right">Bladwijzers</p>
-    <button class="add-book-mark-button">Voeg een bladwijzer toe <i class="fa-solid fa-plus"></i></button>
-    <ul>      
-      <!-- The empty bookmark item is removed from the HTML -->
-    </ul>
-  </div>
+  <?php
+  // Check if the user is logged in using session or remember me cookie
+  if (isset($_SESSION['user_id'])) {
+      // User is logged in via session
+      echo '
+      
+      <div class="sidebar-right">
+      <span class="inhoudsopgave-toggle-right">
+        <span class="sluiten-right"><i class="fa-solid fa-xmark"></i></span>
+      </span>
+      <p class="title-sidebar-right">Bladwijzers</p>
+      <button class="add-book-mark-button">Voeg een bladwijzer toe <i class="fa-solid fa-plus"></i></button>
+      <ul>      
+        <!-- The empty bookmark item is removed from the HTML -->
+      </ul>
+      </div>
+      
+      ';
+  } elseif (isset($_COOKIE['remember_token']) && !empty($_COOKIE['remember_token'])) {
+      $token = $_COOKIE['remember_token'];
+
+      // Retrieve user from the database based on the remember token
+      $stmt = $conn->prepare("SELECT * FROM users WHERE remember_token = :token");
+      $stmt->bindParam(':token', $token);
+      $stmt->execute();
+      $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      if ($user) {
+          // User is logged in via remember me cookie
+          $_SESSION['user_id'] = $user['id'];
+          echo '
+          
+          <div class="sidebar-right">
+          <span class="inhoudsopgave-toggle-right">
+            <span class="sluiten-right"><i class="fa-solid fa-xmark"></i></span>
+          </span>
+          <p class="title-sidebar-right">Bladwijzers</p>
+          <button class="add-book-mark-button">Voeg een bladwijzer toe <i class="fa-solid fa-plus"></i></button>
+          <ul>      
+            <!-- The empty bookmark item is removed from the HTML -->
+          </ul>
+          </div>
+          
+          ';
+      } else {
+          echo '
+          
+          <div class="sidebar-right">
+          <span class="inhoudsopgave-toggle-right">
+            <span class="sluiten-right"><i class="fa-solid fa-xmark"></i></span>
+          </span>
+          <p class="title-sidebar-right">Bladwijzers</p>
+          <button class="add-book-mark-button">Voeg een bladwijzer toe <i class="fa-solid fa-plus"></i></button>
+          <ul>      
+            <!-- The empty bookmark item is removed from the HTML -->
+          </ul>
+          </div>
+          
+          ';
+      }
+  } else {
+      echo '
+      
+      <div class="sidebar-right">
+      <span class="inhoudsopgave-toggle-right">
+        <span class="sluiten-right"><i class="fa-solid fa-xmark"></i></span>
+      </span>
+      <p class="title-sidebar-right">Bladwijzers</p>
+      <button class="add-book-mark-button add-book-mark-button-server">Voeg een bladwijzer toe <i class="fa-solid fa-plus"></i></button>
+      <ul>      
+        <!-- The empty bookmark item is removed from the HTML -->
+      </ul>
+      </div>
+      
+      ';
+  }
+  ?>
+
 
   <div class="config-page-bottom">
     <div class="config-page-bottom-container">
@@ -53,10 +122,11 @@
           <span class="icon-letter-size">Aa </span>
           <button class="size-min size-button"><i class="fa-solid fa-minus"></i></button>
           <button class="size-plus size-button"><i class="fa-solid fa-plus"></i></button>       
+          <button class="reset-font-sizes"><i class="fa-solid fa-arrow-rotate-left"></i></button>       
         </div>
       </div>
       <div class="config-page-left-options">
-        <span class="blz-select-text">Blz. </span><select class="blz-select" name="bladzijdes">
+        <span class="blz-select-text">Blz. </span><select class="blz-select" name="bladzijdes" id="bladzijdes-select">
           <option value="5">5</option>
           <option value="6">6</option>
           <option value="9">9</option>
@@ -110,7 +180,7 @@
           // Check if the user is logged in using session or remember me cookie
           if (isset($_SESSION['user_id'])) {
               // User is logged in via session
-              echo '<li><a href="logout">Uitloggen</a></li>';
+              echo '<li><a href="logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>';
           } elseif (isset($_COOKIE['remember_token']) && !empty($_COOKIE['remember_token'])) {
               $token = $_COOKIE['remember_token'];
 
@@ -123,12 +193,12 @@
               if ($user) {
                   // User is logged in via remember me cookie
                   $_SESSION['user_id'] = $user['id'];
-                  echo '<li><a href="logout">Uitloggen</a></li>';
+                  echo '<li><a href="logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>';
               } else {
-                  echo '<li><a href="inloggen">Inloggen</a></li>';
+                  echo '<li><a href="inloggen"><i class="fa-solid fa-user"></i></a></li>';
               }
           } else {
-              echo '<li><a href="inloggen">Inloggen</a></li>';
+              echo '<li><a href="inloggen"><i class="fa-solid fa-user"></i></a></li>';
           }
           ?>
       </ul>
@@ -754,6 +824,8 @@
 
 <script>
   let currentBook = "Het Traktaat over de Natuur"
+  let bookUrlJS = "/het-traktaat-over-de-natuur"
+  let currentBookStore = "het-traktaat-over-de-natuur"
 </script>
 
 <?php include('includes/footer-book-page.php'); ?>

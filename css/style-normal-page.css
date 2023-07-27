@@ -77,7 +77,9 @@ ul {
 
 .text-under-main-title {
   text-align: center;
-  margin: 0;
+  margin-top: -10px;
+  margin-bottom: 5px;
+  font-size: 14px;
 }
 
 .books-container {
@@ -174,6 +176,13 @@ button, a {
   column-gap: 20px;
 }
 
+.menu 
+.fa-envelope {
+  font-size: 20px;
+  margin-top: 5px;
+  margin-left: -10px;
+}
+
 /* Register page */
 h2 {
   text-align: center;
@@ -182,7 +191,7 @@ h2 {
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .form {
@@ -233,8 +242,18 @@ input[type="submit"]:hover {
 
 .error-message {
   color: red;
-  margin-top: 5px;
+  margin-top: -10px;
+  margin-bottom: 5px;
   font-size: 14px;
+  text-align: center;
+}
+
+.account-vraag a:visited {
+  color: #b1091f !important;
+}
+
+.account-vraag a {
+  color: #b1091f !important;
 }
 
 @media only screen and (max-width: 768px) {

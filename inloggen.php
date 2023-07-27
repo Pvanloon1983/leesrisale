@@ -70,6 +70,7 @@ $conn = null;
     <?php endif; ?>
 
     <form class="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <div class="error-message"><?php echo $errorMessage; ?></div>
         <div class="form-group">
             <label for="email">E-mail:</label>
             <input type="email" name="email" value="<?php echo htmlspecialchars($emailValue); ?>" required>
@@ -84,7 +85,7 @@ $conn = null;
         <div class="form-group">
             <input type="submit" value="Inloggen">
         </div>
-        <div class="error-message"><?php echo $errorMessage; ?></div>
+        <p class="account-vraag">Nog geen account? <a href="/registreren">Registreren</a></p>        
     </form>
 </div>
 

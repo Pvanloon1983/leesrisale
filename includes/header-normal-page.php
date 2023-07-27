@@ -17,8 +17,7 @@
         <div class="logo">
             <a href="/"><img src="../images/leesrisale_logo.png" alt=""></a>
         </div>
-        <ul class="menu">
-          <li><a href="mailto: info@lucideinkt.nl">Contact</a></li>
+        <ul class="menu">          
           <?php
           // Check if the user is logged in using session or remember me cookie
           if (isset($_SESSION['user_id'])) {
@@ -44,6 +43,7 @@
               echo '<li><a href="inloggen">Inloggen</a></li>';
           }
           ?>
+          <li><a href="mailto: info@lucideinkt.nl"><i class="fa-solid fa-envelope"></i></a></li>
       </ul>
     </div>
 </nav>

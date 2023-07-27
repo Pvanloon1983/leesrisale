@@ -18,7 +18,34 @@
         <span class="inhoudsopgave-toggle">
           <span class="open"><i class="fa-solid fa-angles-right"></i></span>
         </span>
-        <i class="fa-solid fa-bookmark book-mark-page"></i>
+
+        <?php
+          // Check if the user is logged in using session or remember me cookie
+          if (isset($_SESSION['user_id'])) {
+              // User is logged in via session
+              echo '<i class="fa-solid fa-bookmark book-mark-page book-mark-page-server"></i>';
+          } elseif (isset($_COOKIE['remember_token']) && !empty($_COOKIE['remember_token'])) {
+              $token = $_COOKIE['remember_token'];
+
+              // Retrieve user from the database based on the remember token
+              $stmt = $conn->prepare("SELECT * FROM users WHERE remember_token = :token");
+              $stmt->bindParam(':token', $token);
+              $stmt->execute();
+              $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+              if ($user) {
+                  // User is logged in via remember me cookie
+                  $_SESSION['user_id'] = $user['id'];
+                  echo '<i class="fa-solid fa-bookmark book-mark-page book-mark-page-server"></i>';
+              } else {
+                  echo '<i class="fa-solid fa-bookmark book-mark-page book-mark-page-client"></i>';
+              }
+          } else {
+              echo '<i class="fa-solid fa-bookmark book-mark-page book-mark-page-client"></i>';
+          }
+          ?>
+       
+        
         <a href="/" class="back-to-home-link"><i class="fa-solid fa-house back-to-home-page"></i></a>
       </div>
 

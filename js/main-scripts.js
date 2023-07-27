@@ -190,6 +190,9 @@ function attachEventListeners() {
 function goToPageAndScroll(pageId) {
   const pageElement = document.getElementById(pageId);
   if (pageElement) {
+    // Clear the current page ID from local storage
+    localStorage.removeItem("currentPageId" + "-" + currentBookStore);
+
     window.requestAnimationFrame(function() {
       pageElement.scrollIntoView({
         behavior: 'smooth',
@@ -203,7 +206,7 @@ function goToPageAndScroll(pageId) {
 // Function to generate search result link with proper URL and page ID
 function generateSearchResultLink(pageNumber) {
   const link = document.createElement('a');
-  link.href = `het-traktaat-over-de-natuur.html#${pageNumber}`;
+  link.href = `${currentBookStore}.html#${pageNumber}`;
   link.classList.add('search-item-result', 'item-result');
   link.innerHTML = `<p class="page-item-result">Blz. ${pageNumber} - ${currentBook}</p>`;
   return link;
@@ -225,7 +228,7 @@ window.addEventListener('load', function () {
     sessionStorage.removeItem('selectedPage');
   } else if (!isSearchResultClick) { // Add condition to skip scroll to top if it's a search result click
     setTimeout(function () {
-      window.scrollTo(0, 0);
+      //window.scrollTo(0, 0);
     }, 0);
   }
 
@@ -236,116 +239,6 @@ window.addEventListener('load', function () {
   // Attach event listeners after page is fully loaded
   attachEventListeners();
 });
-
-
-/* Bookmark code */
-// Side bar right for bookmarks
-document.querySelector(".book-mark-page").addEventListener("click", function() {
-  var sidebar = document.querySelector(".sidebar-right");
-
-  if (getComputedStyle(sidebar).marginRight === "-275px") {
-    sidebar.style.marginRight = "0";
-  }
-});
-
-document.querySelector(".sluiten-right").addEventListener("click", function() {
-  var sidebar = document.querySelector(".sidebar-right");
-
-  if (getComputedStyle(sidebar).marginRight === "0px") {
-    sidebar.style.marginRight = "-275px";
-  }
-});
-
-
-document.querySelector(".add-book-mark-button").addEventListener("click", function() {
-  // Retrieve book title from currentBook variable
-  var bookTitle = currentBook;
-  // Retrieve book page from <select> element with class "blz-select"
-  var bookPage = document.querySelector(".blz-select").value;
-
-  if (bookPage && !isNaN(bookPage)) {
-    // If the page is not empty and is a valid number
-    var bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
-    var existingBookmarkIndex = bookmarks.findIndex(function(item) {
-      return item.title === bookTitle && item.page === bookPage;
-    });
-
-    if (existingBookmarkIndex === -1) {
-      // If the bookmark with the same title and page does not exist, save the bookmark
-      saveBookmark(bookTitle, bookPage);
-      // Refresh the bookmarks in the sidebar
-      refreshBookmarks();
-    } else {
-      // alert("Bookmark already exists.");
-    }
-  }
-});
-
-
-function saveBookmark(title, page) {
-  var bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
-  bookmarks.push({ title: title, page: page });
-  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-}
-
-function refreshBookmarks() {
-  var bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
-  var bookmarksList = document.querySelector(".sidebar-right ul");
-  bookmarksList.innerHTML = "";
-
-  bookmarks.forEach(function(bookmark) {
-    var bookmarkItem = document.createElement("li");
-    bookmarkItem.classList.add("bookmark-item");
-    bookmarkItem.addEventListener("click", function() {
-      scrollToPage(bookmark.page);
-    });
-
-    var bookmarkTitle = document.createElement("p");
-    bookmarkTitle.classList.add("book-mark-book-title");
-    bookmarkTitle.textContent = bookmark.title;
-
-    var bookmarkPageNumber = document.createElement("p");
-    bookmarkPageNumber.classList.add("book-mark-book-page-number");
-    bookmarkPageNumber.textContent = "Blz. " + bookmark.page;
-
-    var deleteButton = document.createElement("p");
-    deleteButton.classList.add("delete-mark");
-    deleteButton.innerHTML = "<i class='fa-solid fa-trash delete-bookmark-icon'></i>";
-    deleteButton.addEventListener("click", function(event) {
-      event.stopPropagation(); // Stop event propagation
-      deleteBookmark(bookmark);
-      refreshBookmarks();
-    });
-
-    bookmarkItem.appendChild(bookmarkTitle);
-    bookmarkItem.appendChild(bookmarkPageNumber);
-    bookmarkItem.appendChild(deleteButton);
-
-    bookmarksList.appendChild(bookmarkItem);
-  });
-}
-
-function deleteBookmark(bookmark) {
-  var bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
-  var index = bookmarks.findIndex(function(item) {
-    return item.title === bookmark.title && item.page === bookmark.page;
-  });
-  if (index !== -1) {
-    bookmarks.splice(index, 1);
-    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-  }
-}
-
-function scrollToPage(pageNumber) {
-  var pageId = pageNumber;
-  var pageElement = document.getElementById(pageId);
-  if (pageElement) {
-    pageElement.scrollIntoView();
-  }
-}
-
-// Call refreshBookmarks on page load to populate the sidebar with existing bookmarks
-refreshBookmarks();
 
 /* Tool tip code */
 var tooltipDiv = null;
