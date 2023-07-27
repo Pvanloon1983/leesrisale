@@ -455,3 +455,4 @@ document.querySelector(".sluiten").addEventListener("click", function() {
 
 // Call checkStoredPageId on page load to navigate to the stored page ID
 checkStoredPageId();
+

@@ -828,4 +828,6 @@
   let currentBookStore = "het-traktaat-over-de-natuur"
 </script>
 
+
+
 <?php include('includes/footer-book-page.php'); ?>

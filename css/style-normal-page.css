@@ -296,6 +296,70 @@ input[type="submit"]:hover {
   cursor: pointer;
 }
 
+/* CSS Styles for the clickable box effect */
+.search-result-item-box {
+  background-color: #fefefe;
+  padding: 10px;
+  margin-bottom: 15px;
+  display: block;
+  width: 100%;
+  border-radius: 3px;
+  line-height: 1.4em;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  font-size: 14px;
+}
+
+.zoek-resultaten a {
+  color: #333 !important;
+  text-decoration: none;
+}
+
+.boek-titel, .boek-blz {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.boek-blz {
+  margin-bottom: 10px;
+}
+
+.zoek-resultaten {  
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.search-box {
+  position: relative;
+}
+.search-clear-button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #999;
+  cursor: pointer;
+  display: none;
+  position: relative;
+  z-index: 20;
+  margin-left: -40px;  
+}
+
+.search-clear-button
+.fa-xmark {
+  padding: 5px;
+}
+
+.search-clear-button:hover {
+  color: #555;
+}
+
+/* Show the clear button when the input is not empty */
+.search-page-input:not(:placeholder-shown) + .search-clear-button {
+  display: block;
+}
+
 @media only screen and (max-width: 768px) {
   .books-container {
     display: grid;

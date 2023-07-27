@@ -38,5 +38,30 @@ if (isset($_SESSION['user_id'])) {
 
 ?>
 
+<!-- Add this script to the target page (het-traktaat-over-de-natuur.php) -->
+<script>
+  // Function to scroll to the target element based on the URL hash
+  function scrollToTargetElement() {
+    const urlParams = new URLSearchParams(window.location.hash.substring(1));
+    const scrollToElement = urlParams.get('zoekbladzijde');
+
+    if (scrollToElement) {
+      const targetElement = document.getElementById(scrollToElement);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }
+
+  // Call the function once the DOM content is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    scrollToTargetElement();
+  });
+
+  // Scroll to the target element again after a short delay to ensure smooth scrolling
+  setTimeout(scrollToTargetElement, 500);
+</script>
+
+
 </body>
 </html>

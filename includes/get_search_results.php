@@ -38,11 +38,7 @@ if (isset($_GET['zoeken']) && !empty($_GET['zoeken'])) {
             $bladzijde = strip_tags(htmlspecialchars_decode($result['bladzijde']));
 
             // Display the search results inside the 'zoek-resultaten' div
-            echo '<p><strong>Titel:</strong> ' . $titel . '</p>';
-            echo '<p><strong>URL Slug:</strong> ' . $url_slug . '</p>';
-            echo '<p><strong>Inhoud Blz:</strong> ' . htmlspecialchars($inhoud_blz) . '</p>';
-            echo '<p><strong>Bladzijde:</strong> ' . $bladzijde . '</p>';
-            echo '<hr>';
+            echo '<div data-title="' . htmlspecialchars($titel) . '" data-url-slug="' . htmlspecialchars($url_slug) . '" data-page-number="' . htmlspecialchars($bladzijde) . '">' . htmlspecialchars($inhoud_blz) . '</div>';
         }
     } else {
         echo '<p>No results found.</p>';
