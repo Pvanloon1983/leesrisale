@@ -9,6 +9,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../css/style-books.css?v=11">
+
+  <!-- Add these two lines to include the required JavaScript libraries -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-De4xdgQ5iKrHSAHvRM9hO0qY5UfPc8k9T/8aEwr+Kek=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.9.0/dist/tf.min.js"></script>
 </head>
 <body>
 

@@ -263,6 +263,39 @@ input[type="submit"]:hover {
   color: #b1091f !important;
 }
 
+#search-page-form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#search-page-form
+.search-page-input {
+  border-right: none;
+}
+
+
+#search-page-form
+.search-page-input:focus {
+  border-color: #b1091f;
+  box-shadow: 0px 0px 6px rgba(76, 175, 80, 0.3);
+  border-right: none;
+}
+
+#search-page-form
+.search-page-search-button {
+  border: 1px solid #b1091f;
+  background-color: #b1091f;
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 768px) {
   .books-container {
     display: grid;
