@@ -180,7 +180,7 @@
           // Check if the user is logged in using session or remember me cookie
           if (isset($_SESSION['user_id'])) {
               // User is logged in via session
-              echo '<li><a href="logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>';
+              echo '<li><a href="logout">Uitloggen</a></li>';
           } elseif (isset($_COOKIE['remember_token']) && !empty($_COOKIE['remember_token'])) {
               $token = $_COOKIE['remember_token'];
 
@@ -193,12 +193,12 @@
               if ($user) {
                   // User is logged in via remember me cookie
                   $_SESSION['user_id'] = $user['id'];
-                  echo '<li><a href="logout"><i class="fa-solid fa-right-from-bracket"></i></a></li>';
+                  echo '<li><a href="logout">Uitloggen</a></li>';
               } else {
-                  echo '<li><a href="inloggen"><i class="fa-solid fa-user"></i></a></li>';
+                  echo '<li><a href="inloggen">Inloggen</a></li>';
               }
           } else {
-              echo '<li><a href="inloggen"><i class="fa-solid fa-user"></i></a></li>';
+              echo '<li><a href="inloggen">Inloggen</a></li>';
           }
           ?>
       </ul>

@@ -179,8 +179,15 @@ button, a {
 .menu 
 .fa-envelope {
   font-size: 20px;
-  margin-top: 5px;
-  margin-left: -10px;
+  margin-top: 6px;
+  margin-left: 0;
+}
+
+.menu 
+.fa-house {
+  font-size: 20px;
+  margin-top: 0px;
+  margin-left: 0;
 }
 
 /* Register page */
