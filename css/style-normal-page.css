@@ -273,9 +273,34 @@ input[type="submit"]:hover {
   align-items: center;
 }
 
+.terug-button {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.terug-button
+.terug-naar-vorige-pagina {
+  border: none;
+  background-color: transparent;
+  margin-top: 8px;
+  cursor: pointer;
+  padding-left: 0;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.terug-button
+.terug-naar-vorige-pagina
+.fa-arrow-left {
+  font-size: 16px;
+}
+
 #search-page-form
 .search-page-input {
   border-right: none;
+  font-size: 14px;
+  padding: 12px;
 }
 
 
@@ -288,12 +313,15 @@ input[type="submit"]:hover {
 
 #search-page-form
 .search-page-search-button {
-  border: 1px solid #b1091f;
+  border: 0px solid #b1091f;
   background-color: #b1091f;
   color: #fff;
   text-align: center;
   padding: 12px;
   cursor: pointer;
+  height: 47px;
+  box-shadow: 0px 0px 6px rgba(76, 175, 80, 0.3);
+  position: relative;
 }
 
 /* CSS Styles for the clickable box effect */
@@ -328,7 +356,7 @@ input[type="submit"]:hover {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 10x;
 }
 
 .search-box {
@@ -385,6 +413,19 @@ input[type="submit"]:hover {
   .book-item
   .book-title {
     font-size: 16px;
+  }
+
+  #search-page-form
+  .search-page-input {
+    border-right: none;
+    font-size: 14px;
+    padding: 12px;
+    height: 40px;
+  }
+
+  #search-page-form 
+  .search-page-search-button {
+    height: 40px;
   }
 
 }

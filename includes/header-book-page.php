@@ -53,7 +53,7 @@
         <div class="search-container">
           <!-- <input class="bottom-search" type="text" autocomplete="on" id="searchInput" placeholder="Zoeken...">
           <div id="clearIcon">&times;</div> -->
-          <a href="/zoeken"><button class="search-button-link">Zoeken...<i class="fa-solid fa-magnifying-glass"></i></button></a>       
+          <a href="/zoeken"><button class="search-button-link">Zoeken... <i class="fa-solid fa-magnifying-glass"></i></button></a>       
         </div>      
       </div>
       

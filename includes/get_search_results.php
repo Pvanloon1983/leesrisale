@@ -5,24 +5,22 @@ session_start();
 include_once('../config/db.php'); // Include the database configuration file
 
 // Helper function to remove accents from a string
-function removeAccents($str) {
-    return strtr($str, 
-        'ÀÁÂÃÄÅàáâãäåĀāĂăĄąÇçĆćĈĉĊċČčÐðĎďĐđÈÉÊËèéêëĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħÌÍÎÏìíîïĨĩĪīĬĭĮįİıĴĵĶķĸĹĺĻļĽľĿŀŁłÑñŃńŅņŇňŉŊŋÒÓÔÕÖØòóôõöøŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŦŧÙÚÛÜùúûüŨũŪūŬŭŮůŰűŲųŴŵÝýÿŶŷŸŹźŻżŽž',
-        'AAAAAAAAaaaaaaaCCCCccDdEEEEeeeeGgGgGgHhIIIIiiiiIiIiIiIiIiJjKkkLlLlLlLlLlNnNnNnnNnOOOOOOooooooRrRrRrSSsSsSsSsTtTtTtUUUUuuuuUuUuUuUuUuWwYyyYyYZzZzZz'
-    );
-}
+// function removeAccents($str) {
+//     return strtr($str, 'ÀÁÂÃÄÅàáâãäåĀāĂăĄąÇçĆćĈĉĊċČčÐðĎďĐđÈÉÊËèéêëĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħÌÍÎÏìíîïĨĩĪīĬĭĮįİıĴĵĶķĸĹĺĻļĽľſŀŁłÑñŃńŅņŇňŉŊŋÒÓÔÕÖØòóôõöøŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŦŧÙÚÛÜùúûüŨũŪūŬŭŮůŰűŲųŴŵÝýÿŶŷŸŹźŻżŽž',
+//         'AAAAAAAAaaaaaaaCCCCccDdEEEEeeeeGgGgGgHhIIIIiiiiIiIiIiIiIiJjKkkLlLlLlLlLlNnNnNnnNnOOOOOOooooooRrRrRrSSsSsSsSsTtTtTtUUUUuuuuUuUuUuUuUuWwYyyYyYZzZzZz');
+// }
 
 if (isset($_GET['zoeken']) && !empty($_GET['zoeken'])) {
     // Sanitize the search query to prevent SQL injection
     $search_query = strip_tags($_GET['zoeken']);
 
     // Create the SQL query to search for the input in the 'inhoud_blz' column
-    $query = "SELECT * FROM boeken WHERE LOWER(inhoud_blz) LIKE :search_query";
+    $query = "SELECT * FROM boeken WHERE inhoud_blz LIKE CONCAT('%', :search_query, '%')";
     $stmt = $conn->prepare($query);
 
     // Normalize the search query and bind the parameter
-    $normalized_search_query = '%' . removeAccents($search_query) . '%';
-    $stmt->bindParam(':search_query', $normalized_search_query, PDO::PARAM_STR);
+    //$normalized_search_query = '%' . removeAccents($search_query) . '%';
+    $stmt->bindParam(':search_query', $search_query, PDO::PARAM_STR);
     $stmt->execute();
 
     // Fetch the matching rows
