@@ -63,12 +63,12 @@ $conn = null;
 <div class="container">
     <h1 class="main-title">Inloggen</h1>
     <?php if (isset($_SESSION['registration_success']) && $_SESSION['registration_success']) : ?>
-        <p class="text-under-main-title" style="color: #2E8B57;">Bedankt voor het registreren. U kunt nu inloggen.</p>
+        <p class="text-under-main-title" style="color: #2E8B57;">Bedankt voor het registreren. Je kunt nu inloggen.</p>
         <?php unset($_SESSION['registration_success']); ?>
     <?php endif; ?>
 
     <?php if (isset($_SESSION['reset_success']) && $_SESSION['reset_success']) : ?>
-        <p class="text-under-main-title" style="color: #2E8B57;">Uw wachtwoord is succesvol gereset. U kunt nu inloggen met uw nieuwe wachtwoord.</p>
+        <p class="text-under-main-title" style="color: #2E8B57;">Jouw wachtwoord is succesvol gereset. Je kunt nu inloggen met jouw nieuwe wachtwoord.</p>
         <?php unset($_SESSION['reset_success']); ?>
     <?php endif; ?>
 
