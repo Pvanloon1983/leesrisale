@@ -146,45 +146,45 @@ function goToPage(pageId, shouldScroll = true) {
 }
 
 // Function to attach event listeners to search-related elements
-function attachEventListeners() {
-  const searchButton = document.querySelector('.search-button');
-  searchButton.addEventListener('click', performSearch);
+// function attachEventListeners() {
+//   const searchButton = document.querySelector('.search-button');
+//   searchButton.addEventListener('click', performSearch);
 
-  const searchInput = document.getElementById('searchInput');
-  searchInput.addEventListener('input', function () {
-    if (searchInput.value.trim() === '') {
-      location.reload(); // Reload the page when the input box is empty
-    } else {
-      // Show the clear icon when there is text in the input box
-      document.getElementById('clearIcon').style.display = 'block';
-    }
-  });
+//   const searchInput = document.getElementById('searchInput');
+//   searchInput.addEventListener('input', function () {
+//     if (searchInput.value.trim() === '') {
+//       location.reload(); // Reload the page when the input box is empty
+//     } else {
+//       // Show the clear icon when there is text in the input box
+//       document.getElementById('clearIcon').style.display = 'block';
+//     }
+//   });
 
-  // Handle the click event of the clear icon
-  const clearIcon = document.getElementById('clearIcon');
-  clearIcon.addEventListener('click', function () {
-    // Reload the page when the clear icon is clicked
-    location.reload();
-  });
+//   // Handle the click event of the clear icon
+//   const clearIcon = document.getElementById('clearIcon');
+//   clearIcon.addEventListener('click', function () {
+//     // Reload the page when the clear icon is clicked
+//     location.reload();
+//   });
 
-  // Hide the clear icon initially
-  clearIcon.style.display = 'none';
+//   // Hide the clear icon initially
+//   clearIcon.style.display = 'none';
 
-  searchInput.addEventListener('keyup', function (event) {
-    // Check if the Enter key was pressed (key value "Enter" or "NumpadEnter")
-    if (event.key === 'Enter') {
-      performSearch();
-    }
-  });
+//   searchInput.addEventListener('keyup', function (event) {
+//     // Check if the Enter key was pressed (key value "Enter" or "NumpadEnter")
+//     if (event.key === 'Enter') {
+//       performSearch();
+//     }
+//   });
 
-  // Replace search item results with clickable links
-  const searchItemResults = document.getElementsByClassName('search-item-result');
-  for (const searchItemResult of searchItemResults) {
-    const pageNumber = searchItemResult.getAttribute('data-page-id');
-    const link = generateSearchResultLink(pageNumber);
-    searchItemResult.parentNode.replaceChild(link, searchItemResult);
-  }
-}
+//   // Replace search item results with clickable links
+//   const searchItemResults = document.getElementsByClassName('search-item-result');
+//   for (const searchItemResult of searchItemResults) {
+//     const pageNumber = searchItemResult.getAttribute('data-page-id');
+//     const link = generateSearchResultLink(pageNumber);
+//     searchItemResult.parentNode.replaceChild(link, searchItemResult);
+//   }
+// }
 
 // Function to navigate to a specific page and scroll to the element with requestAnimationFrame
 function goToPageAndScroll(pageId) {
@@ -233,11 +233,11 @@ window.addEventListener('load', function () {
   }
 
   const searchInput = document.getElementById('searchInput');
-  searchInput.focus(); // Set focus to the search input element
+  //searchInput.focus(); // Set focus to the search input element
 
   
   // Attach event listeners after page is fully loaded
-  attachEventListeners();
+  //attachEventListeners();
 });
 
 /* Tool tip code */

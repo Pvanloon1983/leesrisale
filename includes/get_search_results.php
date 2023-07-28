@@ -21,6 +21,9 @@ if (isset($_GET['zoeken']) && !empty($_GET['zoeken'])) {
         $query .= " AND titel = :selected_book";
     }
 
+    // Add ORDER BY clause to sort by titel and then by bladzijde
+    $query .= " ORDER BY titel, bladzijde";
+
     $stmt = $conn->prepare($query);
 
     $stmt->bindParam(':search_query', $search_query, PDO::PARAM_STR);
