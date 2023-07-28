@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="../css/style-normal-page.css?v=11">
+  <link rel="stylesheet" href="../css/style-normal-page.css?v=12">
 </head>
 <body>
 
@@ -18,6 +18,8 @@
             <a href="/"><img src="../images/leesrisale_logo.png" alt=""></a>
         </div>
         <ul class="menu">       
+          <li><a href="/"><i class="fa-solid fa-house"></i></a></li>
+          <li><a href="/zoeken"><i class="fa-solid fa-magnifying-glass"></i></i></a></li>
           <?php
           // Check if the user is logged in using session or remember me cookie
           if (isset($_SESSION['user_id'])) {
@@ -43,8 +45,6 @@
               echo '<li><a href="inloggen">Inloggen</a></li>';
           }
           ?>
-          <li><a href="mailto: info@lucideinkt.nl"><i class="fa-solid fa-envelope"></i></a></li>
-          <li><a href="/"><i class="fa-solid fa-house"></i></a></li>
       </ul>
     </div>
 </nav>

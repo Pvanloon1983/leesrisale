@@ -110,14 +110,12 @@ function highlightSearchTerm(searchQuery, text, title, pageNumber, urlSlug) {
     return highlightedText;
 }
 
-
-
-
 // Function to update search results with AJAX using fetch() API
 function updateSearchResults() {
     const zoekResultaten = document.querySelector('.zoek-resultaten');
     const searchInput = document.querySelector('.search-page-input');
-    const searchQuery = searchInput.value;
+    let searchQuery = searchInput.value;
+    searchQuery = searchQuery.trim();
 
     if (zoekResultaten && searchQuery) {
         const encodedSearchQuery = encodeURIComponent(searchQuery);        

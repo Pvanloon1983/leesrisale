@@ -92,7 +92,7 @@ $conn = null;
         <label for="confirm_password">Wachtwoord bevestigen:</label>
         <input type="password" name="confirm_password" id="confirm_password" required>
       </div>      
-      <div class="form-group">
+      <div class="form-group submit-button-form-group">
         <input type="submit" value="Registeren">
       </div>
       <p class="account-vraag">Al een account? <a href="/inloggen">Inloggen</a></p>      

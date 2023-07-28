@@ -61,36 +61,18 @@ $conn = null;
 <?php include('includes/header-normal-page.php'); ?>
 
 <div class="container">
-    <h1 class="main-title">Inloggen</h1>
-    <?php if (isset($_SESSION['registration_success']) && $_SESSION['registration_success']) : ?>
-        <p class="text-under-main-title" style="color: #2E8B57;">Bedankt voor het registreren. U kunt nu inloggen.</p>
-        <?php unset($_SESSION['registration_success']); ?>
-    <?php endif; ?>
-
-    <?php if (isset($_SESSION['reset_success']) && $_SESSION['reset_success']) : ?>
-        <p class="text-under-main-title" style="color: #2E8B57;">Uw wachtwoord is succesvol gereset. U kunt nu inloggen met uw nieuwe wachtwoord.</p>
-        <?php unset($_SESSION['reset_success']); ?>
-    <?php endif; ?>
-
-    <form class="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <div class="error-message"><?php echo $errorMessage; ?></div>
-        <div class="form-group">
-            <label for="email">E-mail:</label>
-            <input type="email" name="email" value="<?php echo htmlspecialchars($emailValue); ?>" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Wachtwoord:</label>
-            <input type="password" name="password" required>
-        </div>
-        <div class="form-group">
-            <input style="cursor:pointer;" id="onthoud-mij" type="checkbox" name="remember_me" value="1"> <label style="display: inline;cursor:pointer;" for="onthoud-mij">Onthoud mij</label>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Inloggen">
-        </div>
-        <p class="account-vraag">Nog geen account? <a href="/registreren">Registreren</a></p>        
-        <p class="account-vraag">Wachtwoord vergeten? <a href="/wachtwoord-vergeten">Wachtwoord resetten</a></p>        
-    </form>
+  <h1 class="main-title">Wachtwoord reset aangevraagd</h1>
+  <?php if (isset($_SESSION['reset_success']) && $_SESSION['reset_success']) : ?>
+      <p style="text-align:center;width:100%;max-width:800px;margin:0 auto;">Er is een link voor het resetten van je wachtwoord naar je e-mail gestuurd. Controleer je inbox voor verdere instructies.</p>
+      <p style="text-align:center;width:100%;max-width:800px;margin:0 auto;margin-top:20px;" class="account-vraag">Terug naar <a href="/inloggen">inloggen</a></p>
+  <?php else : ?>
+    <p style="text-align:center;width:100%;max-width:800px;margin:0 auto;">Sorry, we konden geen gebruiker met het e-mailadres vinden of er is een fout opgetreden tijdens het verzenden van de e-mail. Probeer het later nog eens.</p>
+      <p style="text-align:center;width:100%;max-width:800px;margin:0 auto;margin-top:20px;" class="account-vraag">Terug naar <a href="/inloggen">home</a></p>
+  <?php endif; ?>
+<?php 
+// Clear the reset_success session variable after displaying the message
+unset($_SESSION['reset_success']);
+?>
 </div>
 
 <?php include('includes/footer-normal-page.php'); ?>
