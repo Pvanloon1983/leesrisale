@@ -4,16 +4,45 @@ include_once('config/db.php');
 include('includes/header-normal-page.php');
 ?>
 
+
 <div class="container">
     <form id="search-page-form" action="zoeken" method="GET">
-        <input placeholder="Zoeken..." class="search-page-input" type="text" name="zoeken" value="<?php echo isset($_GET['zoeken']) ? htmlspecialchars($_GET['zoeken']) : ''; ?>">
-        <button class="search-clear-button" type="button" aria-label="Clear search input"><i class="fa-solid fa-xmark"></i></button>        
-        <button class="search-page-search-button" type="submit">Zoeken</button>
-    </form>
-    <div class="terug-button">
-      <button class="terug-naar-vorige-pagina"><i class="fa-solid fa-arrow-left"></i></button>
-    </div>
+        <div class="search-input-wrapper">
+            <input placeholder="Zoeken..." class="search-page-input" type="text" name="zoeken" value="<?php echo isset($_GET['zoeken']) ? htmlspecialchars($_GET['zoeken']) : ''; ?>">
+            <button class="search-clear-button" type="button" aria-label="Clear search input"><i class="fa-solid fa-xmark"></i></button>
+            <button class="search-page-search-button" type="submit">Zoeken</button>
+        </div>
 
+        <div class="terug-button both-search-option-terug-wrapper">
+            <button class="terug-naar-vorige-pagina"><i class="fa-solid fa-arrow-left"></i></button>
+
+            <div class="search-option-wrapper">
+                <div class="search-option per-boek-select">
+                    <!-- Dropdown for "Een boek naar keuze" -->
+                    <select name="een_boek" <?php echo isset($_GET['alle_boeken']) ? 'disabled' : ''; ?>>
+                        <option value="alle_boeken" <?php echo (!isset($_GET['een_boek']) || $_GET['een_boek'] === 'alle_boeken') ? 'selected' : ''; ?>>
+                            Alle boeken
+                        </option>
+                        <?php
+                        // Fetch the book titles from the database (Modify the query as per your database structure)
+                        $stmt = $conn->prepare("SELECT DISTINCT titel FROM boeken");
+                        $stmt->execute();
+                        $books = $stmt->fetchAll(PDO::FETCH_COLUMN);
+                        foreach ($books as $book) {
+                            $bookSlug = strtolower(str_replace(' ', '-', $book));
+                            if (isset($_GET['een_boek']) && $_GET['een_boek'] === $book) {
+                                echo '<option value="' . $book . '" selected>' . $book . '</option>';
+                            } else {
+                                echo '<option value="' . $book . '">' . $book . '</option>';
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </form>
 
     <div class="zoek-resultaten">
         <!-- Search results will be dynamically updated here -->
@@ -117,13 +146,17 @@ function updateSearchResults() {
     let searchQuery = searchInput.value;
     searchQuery = searchQuery.trim();
 
-    if (zoekResultaten && searchQuery) {
-        const encodedSearchQuery = encodeURIComponent(searchQuery);        
+    const selectBox = document.querySelector('select[name="een_boek"]');
+    const selectedBook = selectBox.value;
 
-        fetch('./includes/get_search_results.php?zoeken=' + searchQuery)
+    if (zoekResultaten && searchQuery) {
+        const encodedSearchQuery = encodeURIComponent(searchQuery);
+        const encodedSelectedBook = encodeURIComponent(selectedBook);
+
+        // Modify the fetch URL to include both searchQuery and selectedBook
+        fetch(`./includes/get_search_results.php?zoeken=${encodedSearchQuery}&een_boek=${encodedSelectedBook}`)
             .then((response) => response.text())
             .then((data) => {
-
                 zoekResultaten.innerHTML = data;
                 // Highlight the search term in the updated results
                 const resultItems = zoekResultaten.querySelectorAll('div[data-title][data-url-slug][data-page-number]');

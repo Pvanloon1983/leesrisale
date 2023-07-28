@@ -10,11 +10,26 @@ if (isset($_GET['zoeken']) && !empty($_GET['zoeken'])) {
     $search_query = trim($search_query);
     $search_query = htmlspecialchars($search_query);
 
+    // Get the selected book (if any) from the URL parameter
+    $selected_book = isset($_GET['een_boek']) ? $_GET['een_boek'] : '';
+
     // Create the SQL query to search for the input in the 'inhoud_blz' column
     $query = "SELECT * FROM boeken WHERE inhoud_blz LIKE CONCAT('%', :search_query, '%')";
+
+    // If a specific book is selected, add a condition to filter the results
+    if ($selected_book !== 'alle_boeken') {
+        $query .= " AND titel = :selected_book";
+    }
+
     $stmt = $conn->prepare($query);
 
     $stmt->bindParam(':search_query', $search_query, PDO::PARAM_STR);
+
+    // If a specific book is selected, bind its value to the parameter
+    if ($selected_book !== 'alle_boeken') {
+        $stmt->bindParam(':selected_book', $selected_book, PDO::PARAM_STR);
+    }
+
     $stmt->execute();
 
     // Fetch the matching rows
