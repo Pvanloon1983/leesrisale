@@ -4,15 +4,15 @@
   let userIdFromServer = <?php echo isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : 0; ?>;
 </script>
 
-<script src="../js/main-scripts.js?v=12"></script>
+<script src="../js/main-scripts.js?v=13"></script>
 
 <?php 
 
 // Check if the user is logged in using session or remember me cookie
 if (isset($_SESSION['user_id'])) {
   // User is logged in via session
-  echo '<script src="../js/bookmark-scripts-server.js?v=12"></script>';
-  echo '<script src="../js/user-settings-server.js?v=12"></script>';
+  echo '<script src="../js/bookmark-scripts-server.js?v=13"></script>';
+  echo '<script src="../js/user-settings-server.js?v=13"></script>';
 } elseif (isset($_COOKIE['remember_token']) && !empty($_COOKIE['remember_token'])) {
     $token = $_COOKIE['remember_token'];
 
@@ -25,15 +25,15 @@ if (isset($_SESSION['user_id'])) {
     if ($user) {
         // User is logged in via remember me cookie
         $_SESSION['user_id'] = $user['id'];
-        echo '<script src="../js/bookmark-scripts-server.js?v=12"></script>';
-        echo '<script src="../js/user-settings-server.js?v=12"></script>';
+        echo '<script src="../js/bookmark-scripts-server.js?v=13"></script>';
+        echo '<script src="../js/user-settings-server.js?v=13"></script>';
     } else {
-        echo '<script src="../js/bookmark-scripts-client.js?v=12"></script>';
-        echo '<script src="../js/user-settings-client.js?v=12"></script>';
+        echo '<script src="../js/bookmark-scripts-client.js?v=13"></script>';
+        echo '<script src="../js/user-settings-client.js?v=13"></script>';
     }
 } else {
-    echo '<script src="../js/bookmark-scripts-client.js?v=12"></script>';
-    echo '<script src="../js/user-settings-client.js?v=12"></script>';
+    echo '<script src="../js/bookmark-scripts-client.js?v=13"></script>';
+    echo '<script src="../js/user-settings-client.js?v=13"></script>';
 }
 
 ?>

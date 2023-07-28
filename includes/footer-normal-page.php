@@ -1,3 +1,3 @@
-<script src="../js/scripts-normal-page.js?v=12"></script>
+<script src="../js/scripts-normal-page.js?v=13"></script>
 </body>
 </html>
